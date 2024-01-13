@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    let array = ["Rock", "Paper", "Scissors"];
+    function getComputerChoice() {
+      const randomElement = array[(Math.floor(Math.random() * array.length))]
+      console.log(randomElement);
+    }
+    getComputerChoice();
+  </script>
+</body>
+</html>
