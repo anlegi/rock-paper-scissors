@@ -12,6 +12,9 @@
       return randomElement;
     }
 
+
+    let playerScore = 0;
+    let computerScore = 0;
     function singleRound() {
       let playerSelection = prompt("Rock, Paper or Scissors?")
       playerSelection = playerSelection.toLowerCase();
@@ -19,33 +22,52 @@
       let computerSelection = getComputerChoice().toLowerCase();
 
       if (playerSelection == "rock" && computerSelection == "paper") {
+        computerScore++;
         return "You Lose! Paper beats Rock"
       }
       else if (playerSelection == "paper" && computerSelection == "scissors") {
+        computerScore++;
         return "You Lose! Scissors beats Paper"
       }
       else if (playerSelection == "scissors" && computerSelection == "rock") {
+        computerScore++;
         return "You Lose! Rock beats Scissors"
       }
       else if (playerSelection == "rock" && computerSelection == "scissors") {
+        playerScore++;
         return "You Win! Rock beats Scissors"
       }
       else if (playerSelection == "scissors" && computerSelection == "paper") {
+        playerScore++;
         return "You Win! Scissors beats Paper"
       }
       else if (playerSelection == "paper" && computerSelection == "rock") {
+        playerScore++;
         return "You Win! Paper beats Rock"
       }
       else
         return "It's a draw. Try again."
     }
 
+
     function game() {
-      console.log(singleRound());
-      console.log(singleRound());
-      console.log(singleRound());
-      console.log(singleRound());
-      console.log(singleRound());
+      let numberRounds = 3;
+      for (let i = 0; i < numberRounds; i++) {
+        console.log(singleRound());
+        console.log(playerScore, computerScore);
+      }
+
+      // i = 0
+      // singleRound -> console.log
+      // i = 1
+      // checks condition of for loop --> i < numberRounds TRUE
+      // singleRound --> console.log
+      // i = 2
+      // checks condition of for loop --> i < numberRounds TRUE
+      // singleRound --> console.log
+      // i = 3
+      // checks condition of for loop --> i < numberRounds FALSE
+      // breaks out the loop
     }
 
     game();
