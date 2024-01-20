@@ -3,25 +3,13 @@ function getComputerChoice() {
   return randomElement;
 }
 
-function singleRound() {
-  // let playerSelection = prompt("Rock, Paper or Sciss"ors?")
-  let playerSelection = "";
-  playerSelection1 = document.querySelector("#rock");
-  playerSelection1.addEventListener("click", () => {
-    playerSelection = "rock";
-  })
-
-  playerSelection2 = document.querySelector("#paper");
-  playerSelection2.addEventListener("click", () => {
-    playerSelection = "paper";
-  })
-
-  playerSelection3 = document.querySelector("#scissors");
-  playerSelection3.addEventListener("click", () => {
-    playerSelection = "scissors";
-  })
+function singleRound(playerSelection_) {
+  let playerSelection = playerSelection_;
 
   let computerSelection = getComputerChoice().toLowerCase();
+
+  player.textContent = ""
+  com.textContent = ""
 
   if (playerSelection == "rock" && computerSelection == "paper") {
     computerScore++;
@@ -52,10 +40,29 @@ function singleRound() {
 }
 
 function game() {
-  let numberRounds = 3;
+  let numberRounds = 5;
   for (let i = 0; i < numberRounds; i++) {
     console.log(singleRound());
     console.log(playerScore, computerScore);
+  }
+}
+
+function counter() {
+  pScore.textContent = playerScore
+  cScore.textContent = computerScore
+
+  if (playerScore == 5 || computerScore == 5) {
+    if (computerScore > playerScore){
+      com.textContent = "The computer won"
+    }
+    else {
+      player.textContent = "You won the game!!!"
+    }
+    playerScore = 0
+    computerScore = 0
+
+    pScore.textContent = ""
+    cScore.textContent = ""
   }
 }
 
@@ -66,6 +73,38 @@ let array = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
+// selects result div
+let result = document.querySelector(".result");
 
+// get player selection
+let playerSelection = "";
 
-console.log(singleRound());
+let com = document.querySelector(".computer");
+let player = document.querySelector(".player");
+
+let pScore = document.querySelector(".playerscore");
+let cScore = document.querySelector(".computerscore");
+
+playerSelection1 = document.querySelector("#rock");
+playerSelection1.addEventListener("click", () => {
+  playerSelection = "rock";
+  result.textContent = singleRound(playerSelection)
+
+  counter()
+})
+
+playerSelection2 = document.querySelector("#paper");
+playerSelection2.addEventListener("click", () => {
+  playerSelection = "paper";
+  result.textContent = singleRound(playerSelection)
+
+  counter()
+})
+
+playerSelection3 = document.querySelector("#scissors");
+playerSelection3.addEventListener("click", () => {
+  playerSelection = "scissors";
+  result.textContent = singleRound(playerSelection)
+
+  counter()
+})
